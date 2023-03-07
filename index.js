@@ -17,6 +17,7 @@ app.use(express.json());
 // app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(cors());
+const allowedOrigins = ["https://retrieve-api.onrender.com/"];
 app.use(
   cors({
     origin: (origin, callback) => {
