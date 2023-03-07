@@ -34,6 +34,10 @@ app.use(
 
 // ROUTES
 
+app.use("/", (req, res) => {
+  res.status(200).send("Server is Live");
+});
+
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
