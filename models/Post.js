@@ -28,7 +28,7 @@ const PostSchema = new mongoose.Schema(
       min: 6,
     },
     duration: {
-      type: Number,
+      type: String,
       required: true,
     },
     category: {
