@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node index",
     "dev": "nodemon ."
   },
   "author": "",
@@ -13,7 +14,6 @@
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "ejs": "^3.1.8",
     "express": "^4.18.2",
     "googleapis": "^111.0.0",
     "helmet": "^6.0.1",
