@@ -34,8 +34,8 @@ app.use(
 
 // ROUTES
 
-app.use("/", (req, res) => {
-  res.status(200).send("Server is Live");
+app.use("/status", (req, res) => {
+  res.status(200).json({ status: "live" });
 });
 
 app.use("/auth", authRouter);
