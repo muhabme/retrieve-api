@@ -35,13 +35,23 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    imagePath: {
-      type: String,
-      default: "",
-    },
-    imageURL: {
-      type: String,
-      default: "",
+    image: {
+      imagePath: {
+        type: String,
+        default: "",
+      },
+      imageURL: {
+        type: String,
+        default: "",
+      },
+      imageWidth: {
+        type: String,
+        default: "",
+      },
+      imageHeight: {
+        type: String,
+        default: "",
+      },
     },
     likes: {
       type: Map,

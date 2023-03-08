@@ -12,6 +12,8 @@ export const createPost = async (req, res) => {
       category,
       imagePath,
       imageURL,
+      imageWidth,
+      imageHeight,
     } = req.body;
     const user = await User.findById(userId);
     const newPost = new Post({
@@ -24,8 +26,12 @@ export const createPost = async (req, res) => {
       description,
       duration,
       category,
-      imagePath,
-      imageURL,
+      image: {
+        imagePath,
+        imageURL,
+        imageWidth,
+        imageHeight,
+      },
     });
     await newPost.save();
 
@@ -51,7 +57,7 @@ export const getPost = async (req, res) => {
     const { id } = req.params;
     const post = await Post.findById(id);
     const user = await User.findById(post.author.userId);
-    res.status(200).json({post, user});
+    res.status(200).json({ post, user });
   } catch (err) {
     res.status(404).json({ msg: err.message });
   }
@@ -71,22 +77,44 @@ export const getPost = async (req, res) => {
 export const editPost = async (req, res) => {
   try {
     const { id } = req.params;
-    const { userId, title, description, duration, category, imagePath, imageURL } =
-      req.body;
+    const {
+      userId,
+      title,
+      description,
+      duration,
+      category,
+      imagePath,
+      imageURL,
+      imageWidth,
+      imageHeight,
+    } = req.body;
     const post = await Post.findById(id);
 
-      if (post.author.userId.toString() !== userId) {
-        return res
-          .status(401)
-          .json({ msg: "Authentication Credentials Invalid." });
-      }
+    if (post.author.userId.toString() !== userId) {
+      return res
+        .status(401)
+        .json({ msg: "Authentication Credentials Invalid." });
+    }
     const updatedPost = await Post.findByIdAndUpdate(
       id,
-      { title, description, duration, category, imagePath, imageURL },
+      {
+        title,
+        description,
+        duration,
+        category,
+        image: {
+          imagePath,
+          imageURL,
+          imageWidth,
+          imageHeight,
+        },
+      },
       { new: true }
     );
 
-    res.status(200).json({msg: "Post Edited Successfully", data: updatedPost});
+    res
+      .status(200)
+      .json({ msg: "Post Edited Successfully", data: updatedPost });
   } catch (err) {
     res.status(404).json({ msg: err.message });
   }
