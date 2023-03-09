@@ -7,6 +7,7 @@ import morgan from "morgan";
 import { router as authRouter } from "./routes/auth.js";
 import { router as userRouter } from "./routes/users.js";
 import { router as postRouter } from "./routes/posts.js";
+import { getAppData } from "./controllers/app.js";
 
 dotenv.config();
 
@@ -34,10 +35,11 @@ app.use(
 
 // ROUTES
 
-app.use("/status", (req, res) => {
+app.use("/api/status", (req, res) => {
   res.status(200).json({ status: "live" });
 });
 
+app.use("/api/app/appdata", getAppData);
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
