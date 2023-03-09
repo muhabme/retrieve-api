@@ -45,11 +45,11 @@ const PostSchema = new mongoose.Schema(
         default: "",
       },
       imageWidth: {
-        type: String,
+        type: Number,
         default: "",
       },
       imageHeight: {
-        type: String,
+        type: Number,
         default: "",
       },
     },
